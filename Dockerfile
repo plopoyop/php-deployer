@@ -17,7 +17,7 @@ VOLUME /usr/src/app
 
 COPY entrypoint.sh /entrypoint.sh
 
-ENV DEPLOYER_VERSION 5.1.3
+ENV DEPLOYER_VERSION 6.3.0
 
 RUN adduser user -D
 
