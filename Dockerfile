@@ -1,4 +1,4 @@
-FROM php:5.6-cli-alpine
+FROM php:7.2-cli-alpine
 LABEL maintainer="Clément <plopoyop@gmail.com>"
 
 RUN apk update \
@@ -17,7 +17,7 @@ VOLUME /usr/src/app
 
 COPY entrypoint.sh /entrypoint.sh
 
-ENV DEPLOYER_VERSION 4.3.4
+ENV DEPLOYER_VERSION 5.1.3
 
 RUN adduser user -D
 
