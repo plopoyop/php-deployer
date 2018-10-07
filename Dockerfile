@@ -1,27 +1,27 @@
 FROM php:7.2-cli-alpine
 LABEL maintainer="Clément <plopoyop@gmail.com>"
 
+ENV SSH_AUTH_SOCK /tmp/ssh-auth-sock
+ENV SSH_PRIV_KEY id_rsa
+ENV SSH_CONFIG_FILE config
+
+VOLUME /tmp/ssh
+
 RUN apk update \
     && apk add openssh-client \
                su-exec
 
-ENV SOCKET_DIR /ssh-agent/
-ENV SOCKET_NAME ssh
-ENV SSH_AUTH_SOCK ${SOCKET_DIR}/${SOCKET_NAME}
+COPY entrypoint.sh /entrypoint.sh
 
-VOLUME ${SOCKET_DIR}
-
-RUN mkdir /usr/src/app
+RUN adduser user -D \
+    && mkdir /home/user/.ssh/ \
+    && chown user: /home/user/.ssh/ \
+    && mkdir /usr/src/app \
+    && chown user: /usr/src/app
 
 VOLUME /usr/src/app
 
-COPY entrypoint.sh /entrypoint.sh
-
 ENV DEPLOYER_VERSION 5.1.3
-
-RUN adduser user -D
-
-RUN chown user /usr/src/app
 
 RUN wget -O /usr/local/bin/dep http://deployer.org/releases/v${DEPLOYER_VERSION}/deployer.phar \
     && chmod a+x /usr/local/bin/dep
