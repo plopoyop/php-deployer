@@ -21,7 +21,7 @@ RUN adduser user -D \
 
 VOLUME /usr/src/app
 
-ENV DEPLOYER_VERSION 6.4.2
+ENV DEPLOYER_VERSION 6.4.3
 
 RUN wget -O /usr/local/bin/dep http://deployer.org/releases/v${DEPLOYER_VERSION}/deployer.phar \
     && chmod a+x /usr/local/bin/dep
