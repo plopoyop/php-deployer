@@ -1,4 +1,4 @@
-FROM php:7.2-cli-alpine
+FROM php:7.4-cli-alpine
 LABEL maintainer="Clément <plopoyop@gmail.com>"
 
 ENV SSH_AUTH_SOCK /tmp/ssh-auth-sock
